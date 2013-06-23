@@ -1,5 +1,6 @@
 <?php
 // replace it with your developer key which you can find in your user profile
+// http://www.ipaste.eu/view?uid=YOUR_USER_NAME
 define("DEVE_KEY", "863akcbb98f7f8e373aeb1b6c3ab263c");
 // replace with a valid username
 define("USERNAME", "Username");
