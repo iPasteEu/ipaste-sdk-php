@@ -1,9 +1,8 @@
-ipaste-api-php
+Developers API
 ==============
 www.iPaste.eu
 --------------
-Developers API
---------------
+
 This is the iPaste.eu developers API. iPaste.eu is a pastebin-like site.
 
 
