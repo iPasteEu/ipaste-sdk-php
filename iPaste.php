@@ -65,6 +65,7 @@ interface iPasteICore extends iPasteIConstants
     public function remove($pasteId, $tmpKey = null);
 
     /**
+     * Retrieves paste
      * @param $pasteID
      * @param string $format
      * @param null $tmpKeys
