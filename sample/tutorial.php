@@ -8,7 +8,7 @@ define("USERNAME", "Username");
 define("PASSWORD", "Password");
 
 
-require_once "../ipaste-api-php/iPaste.php";
+require_once "./ipaste-api-php/iPaste.php";
 $ipaste = new iPaste();
 $ipaste = new iPaste(DEVE_KEY, USERNAME, PASSWORD);
 $tmpKey = $ipaste->login();
