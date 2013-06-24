@@ -3,7 +3,7 @@
  * iPaste.eu PHP API
  * Copyright 2013, iPaste.eu
  * Compatible with iPaste Web Service Engine 1.0
- * @version 1.0
+ * @version 1.0 
  */
 
 /**
