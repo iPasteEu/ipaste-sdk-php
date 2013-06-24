@@ -2,8 +2,8 @@
 /**
  * iPaste.eu PHP API
  * Copyright 2013, iPaste.eu
- * @version 1.0
  * Compatible with iPaste Web Service Engine 1.0
+ * @version 1.0
  */
 
 /**
@@ -803,14 +803,14 @@ class iPaste implements iPasteICore
      * @return mixed
      * @throws iPasteException
      */
-    public function get($pasteId, $format = iPasteIResponsePasteFormat::JSON, $tmpKey= null)
+    public function get($pasteId, $format = iPasteIResponsePasteFormat::JSON, $tmpKey = null)
     {
         $this->setAndValidateTmpKey($tmpKey);
         if (empty($pasteId) || !is_numeric($pasteId) || strlen($pasteId) > 10)
             throw new iPasteException("KO - Invalid paste ID (is_numeric: " . (is_numeric($pasteId) ? "TRUE" : "FALSE") . ", empty: " . (empty($pasteId) ? "TRUE" : "FALSE") . ", strlen($pasteId) > 10: " . (strlen($pasteId) > 10 ? "TRUE" : "FALSE") . ")");
         $this->validateField($format, "iPasteIResponsePasteFormat");
         $response = $this->call("act=get" .
-        "&a=" . urlencode($this->tmpKey).
+        "&a=" . urlencode($this->tmpKey) .
         "&id=" . urlencode($pasteId) .
         "&frm=" . urlencode($format));
         if ($this->automaticLogin($response))
