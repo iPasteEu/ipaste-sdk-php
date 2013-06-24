@@ -1,4 +1,4 @@
-Developers API BETA
+Developers API ALPHA
 ==============
 ###www.iPaste.eu
 iPaste.eu is a pastebin-like site.
