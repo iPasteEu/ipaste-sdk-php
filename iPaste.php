@@ -611,7 +611,7 @@ class iPaste implements iPasteICore
     {
         // alters some fields like password, which must be hashed before sending request.
         // rendondant.
-        $this->pastePreProcess($paste);
+        //$this->pastePreProcess($paste);
         // it throws an exception
         $this->validatePasteBeforeInsert($paste);
         $pasteId = $paste->getId();
