@@ -1,4 +1,4 @@
-Developers API ALPHA
+iPaste API for PHP Developers
 ==============
 ###www.iPaste.eu
 iPaste.eu is a pastebin-like site.
