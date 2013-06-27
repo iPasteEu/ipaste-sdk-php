@@ -2,6 +2,7 @@ iPaste API for PHP Developers
 ==============
 ####v. 1.0 Beta
 ######www.iPaste.eu
+Please read the [iPaste SDK] (http://www.ipaste.eu/doc/iPaste_SDK_1_0.pdf) for more informations.
 iPaste.eu is a pastebin-like site. 
 
 This is the iPaste.eu developers API. See /samples/tryme.php for API usage example.
