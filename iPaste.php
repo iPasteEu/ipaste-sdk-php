@@ -135,6 +135,7 @@ interface iPasteIValidExpiryDates
  */
 interface iPasteIResponseListFormat
 {
+    const CVS = "cvs";
     const TEXT = "text";
     const RAW = "text";
     const JSON = "json";
@@ -505,6 +506,13 @@ class iPaste implements iPasteICore
          */
         if ($this->automaticLogin($response))
             return $this->getUserPastes($format, $username);
+
+        if($format === iPasteIResponseListFormat::JSON)
+            return json_decode($response, true); else
+            if($format === iPasteIResponseListFormat::CVS)
+                return explode(",", $response); else
+                if($format === iPasteIResponseListFormat::TEXT)
+                    return explode("\r\n", $response); else
         return $response;
     }
 
@@ -855,9 +863,10 @@ class iPaste implements iPasteICore
      */
     public function get($pasteId, $format = iPasteIResponsePasteFormat::JSON, $tmpKey = null)
     {
+
         $this->setAndValidateTmpKey($tmpKey);
         if (empty($pasteId) || !is_numeric($pasteId) || strlen($pasteId) > 10)
-            throw new iPasteException("KO - Invalid paste ID (is_numeric: " . (is_numeric($pasteId) ? "TRUE" : "FALSE") . ", empty: " . (empty($pasteId) ? "TRUE" : "FALSE") . ", strlen($pasteId) > 10: " . (strlen($pasteId) > 10 ? "TRUE" : "FALSE") . ")");
+            throw new iPasteException("KO - Invalid paste ID (is_numeric)");
         $this->validateField($format, "iPasteIResponsePasteFormat");
         $response = $this->call("act=get" .
         "&a=" . urlencode($this->tmpKey) .
