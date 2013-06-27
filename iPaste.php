@@ -89,8 +89,9 @@ interface iPasteIConstants
  * Class iPasteIColor
  * valid values for color variable
  */
-interface iPasteIValidColors
+interface iPasteIValidColours
 {
+    const DEF = "default";
     const RED = "red";
     const BLUE = "blue";
     const GREEN = "green";
@@ -622,15 +623,6 @@ class iPaste implements iPasteICore
     }
 
     /**
-     * Alters some fields in order to make possible a valid request
-     * @param iPastePaste $paste
-     */
-    private function pastePreProcess(iPastePaste $paste)
-    {
-        $paste->setPassword(md5($paste->getPassword()));
-    }
-
-    /**
      * Paste validation: befor insert
      * @param iPastePaste $paste
      * @return string
@@ -673,9 +665,18 @@ class iPaste implements iPasteICore
         // required
         $this->validateField($paste->getSyntax(), "iPasteIValidSyntaxes");
         // required
-        $this->validateField($paste->getColor(), "iPasteIValidColors");
+        $this->validateField($paste->getColor(), "iPasteIValidColours");
         // OOK! :)
         return OK;
+    }
+
+    /**
+     * Alters some fields in order to make possible a valid request
+     * @param iPastePaste $paste
+     */
+    private function pastePreProcess(iPastePaste $paste)
+    {
+        $paste->setPassword(md5($paste->getPassword()));
     }
 
     /**
