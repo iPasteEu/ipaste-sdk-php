@@ -623,7 +623,7 @@ class iPaste implements iPasteICore
          */
         if ($this->automaticLogin($response))
             return $this->update($paste);
-        return $response;
+        return ((int)$response === (int)$paste->getId());
     }
 
     /**
