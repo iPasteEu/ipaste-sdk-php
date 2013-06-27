@@ -785,7 +785,7 @@ class iPaste implements iPasteICore
         '&id=' . urlencode($pasteId));
         if ($this->automaticLogin($response))
             return $this->remove($pasteId);
-        return $response;
+        return ($response === "OK");
     }
 
     /**
