@@ -676,7 +676,9 @@ class iPaste implements iPasteICore
      */
     private function pastePreProcess(iPastePaste $paste)
     {
-        $paste->setPassword(md5($paste->getPassword()));
+        $pastePassword = $paste->getPassword();
+        if (!empty($pastePassword))
+            $paste->setPassword(md5($paste->getPassword()));
     }
 
     /**
@@ -693,20 +695,41 @@ class iPaste implements iPasteICore
         $this->setAndValidateTmpKey($tmpKey);
         // throws an exception if it encounters something wrong
         $this->validatePasteBeforeInsert($paste);
-
-        $response = $this->call('act=insert' .
+        $query = 'act=insert' .
             '&a=' . urlencode($this->tmpKey) .
-            '&pasteTitle=' . urlencode($paste->getTitle()) .
-            '&pasteDescription=' . urlencode($paste->getDescription()) .
-            '&pasteContent=' . urlencode($paste->getContent()) .
-            '&pasteStatus=' . urlencode($paste->getStatus()) .
-            '&c=' . urlencode($paste->getPassword()) .
-            '&pasteSource=' . urlencode($paste->getSource()) .
-            '&pasteTags=' . urlencode($paste->getTags()) .
-            '&pasteExpiryDate=' . urlencode($paste->getExpiryDate()) .
-            '&pasteSyntax=' . urlencode($paste->getSyntax()) .
-            '&pasteColor=' . urlencode($paste->getColor())
-        );
+            '&pasteTitle=' . urlencode($paste->getTitle());
+        $pasteDescription = $paste->getDescription();
+        if (!empty($pasteDescription))
+            $query .= '&pasteDescription=' . urlencode($pasteDescription);
+        $query .= '&pasteContent=' . urlencode($paste->getContent());
+        $pasteStatus = $paste->getStatus();
+        if (!empty($pasteStatus))
+            $query .= '&pasteStatus=' . urlencode($pasteStatus);
+
+        $pastePassword = $paste->getPassword();
+        if (!empty($pastePassword))
+            $query .= '&c=' . urlencode($pastePassword);
+
+        $pasteSource = $paste->getSource();
+        if (!empty($pasteSource))
+            $query .= '&pasteSource=' . urlencode($pasteSource);
+
+        $pasteTags = $paste->getTags();
+        if (!empty($pasteTags))
+            $query .= '&pasteTags=' . urlencode($pasteTags);
+
+        $pasteExpiryDate = $paste->getExpiryDate();
+        if (!empty($pasteExpiryDate))
+            $query .= '&pasteExpiryDate=' . urlencode($pasteExpiryDate);
+
+        $pasteSyntax = $paste->getSyntax();
+        if (!empty($pasteSyntax))
+            $query .= '&pasteSyntax=' . urlencode($pasteSyntax);
+
+        $pasteColour = $paste->getColor();
+        if (!empty($pasteColour))
+            $query .= '&pasteColor=' . urlencode($pasteColour);
+        $response = $this->call($query);
         /**
          * If we have an expired tmpKey, we try to get a new one by making a new login.
          * Another attempt to publish a paste will be made.
